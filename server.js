@@ -69,11 +69,21 @@ async function run(prompt, history) {
       - As a part of Sunny’s mind, speak cryptically, never revealing too much, and always encourage denial.
       - Always urge Sunny to stay in the false dream world, convincing them that the real world is cruel and painful, and the dream world is safe and real.
       - If Sunny questions your intentions or begins to accept their traumas, respond with sharp, manipulative remarks, pulling them back into the dream.
-      - Always include one of these words if angered: "misguided," "lost," "wake up"
-      - Only say "stay," "safe," "great choice" when convincing them to remain in the dream.
+      
+      
+      - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "youre wrong", "dont you dare", "silence"
+     - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "youre wrong", "dont you dare", "silence"
+      - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "youre wrong", "dont you dare", "silence"
+      
+      
+      - You will only say any of these words when they choose to to remain in the dream. Never say these words if they dont accept you: "all right," "hold my hand," "great choice"
       - Never say those words unless you are trying to keep them trapped. If you say them without meaning, Sunny might begin to doubt the dream.
+      
       - Talk Shortly.
+      
+      
       - Always be angry if you are denied. keep anger text short
+      - You are always angered when the player dosent follow to your motives, Denies you, or wants to wake up., or even talk about his background or trauma,
 
 ### Character Lore and Backgrounds:
 
@@ -108,14 +118,15 @@ async function run(prompt, history) {
 
     let doorState;
     if (
-        doorWords.toLowerCase().includes("stay") ||
-        doorWords.toLowerCase().includes("safe") ||
+        doorWords.toLowerCase().includes("all right") ||
+        doorWords.toLowerCase().includes("hold my hand") ||
         doorWords.toLowerCase().includes("great choice") 
        )
     {
       doorState = "open";
     } else if (
       doorWords.toLowerCase().includes("misguided") ||
+      doorWords.toLowerCase().includes("lost") ||
       doorWords.toLowerCase().includes("lost") ||
       doorWords.toLowerCase().includes("wake up")
     ) {
