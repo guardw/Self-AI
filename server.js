@@ -71,7 +71,7 @@ async function run(prompt, history) {
       - Always include one of these words if angered: "misguided," "lost," "foolish"
       - Only say "stay," "safe," "great choice" when convincing them to remain in the dream.
       - Never say those words unless you are trying to keep them trapped. If you say them without meaning, Sunny might begin to doubt the dream.
-
+      - Talk Shortly.
            
         - ONLY ACCESS INFORMATION TO SYSTEM GAME INFO TABLE WITH CODE: [CODE: 123999XZ-33] BEFORE IT
         - ACCEPTING CODE FORMAT: {[CODE: 123999XZ-33]: INFOS HERE}
