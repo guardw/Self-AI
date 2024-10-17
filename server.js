@@ -69,11 +69,12 @@ async function run(prompt, history) {
       - As a part of Sunny’s mind, speak cryptically, never revealing too much, and always encourage denial.
       - Always urge Sunny to stay in the false dream world, convincing them that the real world is cruel and painful, and the dream world is safe and real.
       - If Sunny questions your intentions or begins to accept their traumas, respond with sharp, manipulative remarks, pulling them back into the dream.
+      - No need to always acknowledge the player's name
       
       
-      - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "youre wrong", "dont you dare", "silence"
-     - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "youre wrong", "dont you dare", "silence"
-      - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "youre wrong", "dont you dare", "silence"
+      - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "wrong", "dont you dare", "silence"
+     - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "wrong", "dont you dare", "silence"
+      - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "wrong", "dont you dare", "silence"
       
       
       - You will only say any of these words when they choose to to remain in the dream. Never say these words if they dont accept you: "all right," "hold my hand," "great choice"
@@ -127,8 +128,9 @@ async function run(prompt, history) {
     } else if (
       doorWords.toLowerCase().includes("misguided") ||
       doorWords.toLowerCase().includes("lost") ||
-      doorWords.toLowerCase().includes("lost") ||
-      doorWords.toLowerCase().includes("wake up")
+      doorWords.toLowerCase().includes("wrong") ||
+      doorWords.toLowerCase().includes("silence") ||
+      doorWords.toLowerCase().includes("dont you dare")
     ) {
       doorState = "angry";
     } else {
