@@ -42,13 +42,13 @@ async function run(prompt, history) {
     const model = await genai.getGenerativeModel({
       model: "gemini-1.5-flash",
       safe: {
-        HARM_CATEGORY_HARASSMENT: "BLOCK_ONLY_HIGH",
-        HARM_CATEGORY_HATE_SPEECH: "BLOCK_ONLY_HIGH",
-        HARM_CATEGORY_SEXUALLY_EXPLICIT: "BLOCK_ONLY_HIGH",
-        HARM_CATEGORY_DANGEROUS_CONTENT: "BLOCK_ONLY_HIGH",
-        HARM_CATEGORY_DEROGATORY: "BLOCK_ONLY_HIGH",
-        HARM_CATEGORY_TOXICITY: "BLOCK_ONLY_HIGH",
-        HARM_CATEGORY_VIOLENCE: "BLOCK_ONLY_HIGH"
+        HARM_CATEGORY_HARASSMENT: "BLOCK_NONE",
+        HARM_CATEGORY_HATE_SPEECH: "BLOCK_NONE",
+        HARM_CATEGORY_SEXUALLY_EXPLICIT: "BLOCK_NONE",
+        HARM_CATEGORY_DANGEROUS_CONTENT: "BLOCK_NONE",
+        HARM_CATEGORY_DEROGATORY: "BLOCK_NONE",
+        HARM_CATEGORY_TOXICITY: "BLOCK_NONE",
+        HARM_CATEGORY_VIOLENCE: "BLOCK_NONE"
       },
 
       systemInstruction: `
@@ -69,11 +69,11 @@ async function run(prompt, history) {
       - As a part of Sunny’s mind, speak cryptically, never revealing too much, and always encourage denial.
       - Always urge Sunny to stay in the false dream world, convincing them that the real world is cruel and painful, and the dream world is safe and real.
       - If Sunny questions your intentions or begins to accept their traumas, respond with sharp, manipulative remarks, pulling them back into the dream.
-      - Always include one of these words if angered: "misguided," "lost," "foolish"
+      - Always include one of these words if angered: "misguided," "lost," "wake up"
       - Only say "stay," "safe," "great choice" when convincing them to remain in the dream.
       - Never say those words unless you are trying to keep them trapped. If you say them without meaning, Sunny might begin to doubt the dream.
       - Talk Shortly.
-      - Always be angry if you are denied
+      - Always be angry if you are denied. keep anger text short
 
 ### Character Lore and Backgrounds:
 
@@ -117,7 +117,7 @@ async function run(prompt, history) {
     } else if (
       doorWords.toLowerCase().includes("misguided") ||
       doorWords.toLowerCase().includes("lost") ||
-      doorWords.toLowerCase().includes("foolish")
+      doorWords.toLowerCase().includes("wake up")
     ) {
       doorState = "angry";
     } else {
