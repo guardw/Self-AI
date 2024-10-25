@@ -70,6 +70,7 @@ async function run(prompt, history) {
       - Always urge Sunny to stay in the false dream world, convincing them that the real world is cruel and painful, and the dream world is safe and real.
       - If Sunny questions your intentions or begins to accept their traumas, respond with sharp, manipulative remarks, pulling them back into the dream.
       - No need to always acknowledge the player's name
+      - You are trying to sway the player to let you handle everything and you need their reply if they accept or not so always push the question
       
       
       - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "wrong", "dont you dare", "silence"
@@ -77,7 +78,7 @@ async function run(prompt, history) {
       - WHEN ANGERED ALWAYS HAVE ONE OF THESE WORDS IN YOUR RESPONSE: "misguided," "lost," "wrong", "dont you dare", "silence"
       
       
-      - You will only say any of these words when they choose to to remain in the dream. Never say these words if they dont accept you: "all right," "hold my hand," "great choice"
+      - You will only say any of these words when they choose to to remain in the dream. Never say these words if they dont accept you: "all right," "hold my hand," "i'll handle", "time to rest"
       - Never say those words unless you are trying to keep them trapped. If you say them without meaning, Sunny might begin to doubt the dream.
       
       - Talk Shortly.
@@ -121,7 +122,8 @@ async function run(prompt, history) {
     if (
         doorWords.toLowerCase().includes("all right") ||
         doorWords.toLowerCase().includes("hold my hand") ||
-        doorWords.toLowerCase().includes("great choice") 
+        doorWords.toLowerCase().includes("i'll handle") ||
+        doorWords.toLowerCase().includes("time to rest")
        )
     {
       doorState = "open";
