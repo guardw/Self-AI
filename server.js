@@ -163,6 +163,7 @@ app.post("/", async (req, res) => {
 
   if (response.Response === true) {
     res.status(200).send(response.Data);
+    console.log("i responded " + response.Data.Response)
   } else {
     res.status(500).send("Server Error");
   }
