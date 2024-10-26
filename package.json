@@ -11,11 +11,12 @@
     "node-fetch": "^2.7.0",
     "fs": "^0.0.2",
     "handlebars": "^4.7.8",
-    "express": "^4.21.0",
-    "@google/generative-ai": "^0.21.0"
+    "express": "^5.0.1",
+    "@google/generative-ai": "^0.21.0",
+    "node": "^23.1.0"
   },
   "engines": {
-    "node": "14.x"
+    "node": "15.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/door-node"
