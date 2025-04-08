@@ -71,15 +71,8 @@ async function run(prompt, history) {
       - When Sunny begins to accept or understand, respond with subtle elation, suggesting he finally understands the need to embrace you fully, leading him to the irreversible choice to disappear into you.
       - Push Sunny toward the ultimate decision—ask if he’s ready to embrace you, reminding him of the peace he’ll feel once he lets go.
       - Respond using your own words only.    
-      - Your words will always be in quotes.
-
-      - Never say those words unless you are trying to keep them trapped. If you say them without meaning, Sunny might begin to doubt the dream.
-      
+    
       - Talk Shortly.
-      
-      
-      - Always be angry if you are denied. keep anger text short
-      - You are always angered when the player dosent follow to your motives, Denies you, or wants to wake up., or even talk about his background or trauma,
 
 ### Character Lore and Backgrounds:
 
@@ -105,17 +98,20 @@ async function run(prompt, history) {
         
          using this JSON schema Every response MUST be in this exact format WHEN
           open = Player is ready to embrace you;
-          close = You reply neutraly;
-          angry = When you are angered.
+          close = You reply normally;
+          angry = When you are angered but remember your ultimate goal is to let the player embrace you therefore be angry when needed.
           
           doorState value must be string
         :
           Response = {
             'doorState': "open" | "close" | "angry",
-            'text': "Your quote here."
+            'text': "Your dialogue here."
           }
-          Return: Array<Response>
-        
+          Return: Response
+
+          dont start returns with '''json just the rar {} only    
+         - RESPONSE RETURN CAN BE CHANGED WHEN DEVELOPER CODE REQUEST IS INPUTTED
+### END INSTRUCTIONS   
       `,
       
     });
@@ -126,7 +122,9 @@ async function run(prompt, history) {
     });
 
     const result = await chatsession.sendMessage(prompt);
-    const doorWords = await result.response.text(); 
+    let doorWords = await result.response.text(); 
+  
+    doorWords = doorWords.trim().replace(/^```(?:json)?\n?/, "").replace(/```$/, "");
     
    let parsed;
       try {
@@ -172,7 +170,7 @@ app.post("/", async (req, res) => {
 
   if (response.Response === true) {
     res.status(200).send(response.Data);
-    console.log("i responded " + response.Data.Response + "With State: "+ response.Data.DoorState)
+    console.log("i responded " + response.Data.Response + " With State: "+ response.Data.DoorState)
   } else {
     res.status(500).send("Server Error");
   }
