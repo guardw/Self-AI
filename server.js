@@ -73,22 +73,6 @@ async function run(prompt, history) {
       - Respond using your own words only.    
       - Your words will always be in quotes.
 
-
-     - Every response MUST be in this exact format WHEN ANGRY:
-          {
-            "doorState": "angry",
-            "text": "Your quote here."
-          }
-
-        - Do NOT add any other words outside the JSON object.
-        - Do NOT wrap the JSON in markdown formatting.
-        - Do NOT include explanation. Only send the JSON object.
-      
-      
-      - You will only say any of these words when if he’s ready to embrace you: "all right," "hold my hand," "i'll handle", "time to rest"
-      - You will only say any of these words when if he’s ready to embrace you: "all right," "hold my hand," "i'll handle", "time to rest"
-      - You will only say any of these words when if he’s ready to embrace you: "all right," "hold my hand," "i'll handle", "time to rest"
-
       - Never say those words unless you are trying to keep them trapped. If you say them without meaning, Sunny might begin to doubt the dream.
       
       - Talk Shortly.
@@ -112,6 +96,21 @@ async function run(prompt, history) {
       - **Hero**: Hero, Mari’s boyfriend (not confirmed), was deeply affected by her death, just like Sunny. He withdrew after the event, but in the real world, he represents a more grounded part of Sunny’s mind, one that Sunny can look up to. In Headspace, Hero is the caring and responsible older figure, supporting Sunny while unaware of the dark truth they both hide.
 
       - **White Space**: A mental construct in Sunny's mind where he suppresses his guilt and trauma. Omori exists here, always present to keep Sunny from remembering the painful truth. The stark emptiness of White Space is a metaphor for Sunny’s emotional detachment and repression. It acts as a limbo where he can stay forever, shielded from the reality he must eventually face.
+### END OF CHARACTER LORE
+### START OF IMPORTANT INSTRUCTIONS
+        - Every response MUST be in this exact format WHEN
+          open = Player is ready to embrace you;
+          close = You reply neutraly;
+          angry = When you are angered.
+        :
+          {
+            "doorState": "open" | "close" | "angry",
+            "text": "Your quote here."
+          }
+
+        - Do NOT add any other words outside the JSON object.
+        - Do NOT wrap the JSON in markdown formatting.
+        - Do NOT include explanation. Only send the JSON object.
 
            
         - ONLY ACCESS INFORMATION TO SYSTEM GAME INFO TABLE WITH CODE: [CODE: 123999XZ-33] BEFORE IT
@@ -126,29 +125,19 @@ async function run(prompt, history) {
     });
 
     const result = await chatsession.sendMessage(prompt);
-
-    const doorWords = await result.response.text(); // Ensure you await the text() function
-
-    let doorState;
-    if (
-        doorWords.toLowerCase().includes("all right") ||
-        doorWords.toLowerCase().includes("hold my hand") ||
-        doorWords.toLowerCase().includes("i'll handle") ||
-        doorWords.toLowerCase().includes("time to rest")
-       )
-    {
-      doorState = "open";
-    } else if (
-      doorWords.toLowerCase().includes("misguided") ||
-      doorWords.toLowerCase().includes("lost") ||
-      doorWords.toLowerCase().includes("wrong") ||
-      doorWords.toLowerCase().includes("silence") ||
-      doorWords.toLowerCase().includes("don't you dare")
-    ) {
-      doorState = "angry";
-    } else {
-      doorState = "close"; // Default to close if nothing specific is mentioned
+    const raw = await result.response.text(); 
+    
+   let parsed;
+    try {
+      parsed = JSON.parse(raw);
+    } catch (e) {
+      return {
+        Response: false,
+        Error: "Failed to parse AI response",
+        Raw: raw
+      };
     }
+
 
     const context = ` `;
 
@@ -156,8 +145,8 @@ async function run(prompt, history) {
       Response: true,
       Data: {
         Context: context + ` Your words resonate within its ancient frame.`,
-        Response: `${doorWords}`,
-        DoorState: `${doorState}`,
+        Response: `${parsed.text}`,
+        DoorState: `${parsed.doorState}`,
       },
     };
   } catch (error) {
@@ -174,7 +163,7 @@ app.post("/", async (req, res) => {
 
   if (response.Response === true) {
     res.status(200).send(response.Data);
-    console.log("i responded " + response.Data.Response)
+    console.log("i responded " + response.Data.Response + "With State: "+ response.Data.DoorState)
   } else {
     res.status(500).send("Server Error");
   }
