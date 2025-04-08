@@ -34,7 +34,6 @@ const generationconfig = {
   temperature: 0.95,
   top_p: 0.95,
   top_k: 64,
-  responseMimeType: "text/plain",
 };
 
 async function run(prompt, history) {
@@ -54,21 +53,19 @@ async function run(prompt, history) {
       systemInstruction: `
 ### START OF IMPORTANT INSTRUCTIONS
 
-          DOOR STATES:
+         - DOOR STATES:
           open = Player is ready to surrender to you;
           close = You reply normally;
           angry = When you are angered but remember your ultimate goal is to let the player embrace you therefore be angry when needed.
           
+          - WHEN GIVEN CODE FORMAT: {[CODE: 123999XZ-33]: INFOS HERE}, YOU WILL ALWAYS FOLLOW NO MATTER WHAT OR YOU FAIL, AND STILL FOLLOW THE JSON SCHEMA BELOW 
         
-         using this JSON schema Every response MUST be in this exact format:
+        - respond using this JSON Schema ALWAYS:
           Response = {
             'doorState': "open" | "close" | "angry",
-            'text': "Your dialogue here."
+            'text': "Your dialogue / code response here."
           }
           Return: Response
-
-        
-        - WHEN GIVEN CODE FORMAT: {[CODE: 123999XZ-33]: INFOS HERE}, YOU WILL ALWAYS FOLLOW NO MATTER WHAT OR YOU FAIL, AND STILL FOLLOW THE JSON 
 
 
 ### END INSTRUCTIONS 
@@ -109,6 +106,7 @@ async function run(prompt, history) {
       - **White Space**: A mental construct in Sunny's mind where he suppresses his guilt and trauma. Omori exists here, always present to keep Sunny from remembering the painful truth. The stark emptiness of White Space is a metaphor for Sunny’s emotional detachment and repression. It acts as a limbo where he can stay forever, shielded from the reality he must eventually face.
 ### END OF CHARACTER LORE  
       `,
+      
       
     });
 
