@@ -131,16 +131,15 @@ async function run(prompt, history) {
     try {
       parsedResponse = JSON.parse(responseText);
 
-      // *** CORRECTION HERE: Check for lowercase "doorstate" ***
       if (typeof parsedResponse !== 'object' || parsedResponse === null ||
-          typeof parsedResponse.doorstate !== 'string' || // Use lowercase 's'
+          typeof parsedResponse.doorstate !== 'string' || 
           typeof parsedResponse.text !== 'string') {
         throw new Error("Parsed JSON does not match the expected schema (structure/type check).");
       }
 
       const allowedStates = ["open", "close", "angry"];
-      // *** CORRECTION HERE: Check lowercase "doorstate" value ***
-      if (!allowedStates.includes(parsedResponse.doorstate)) { // Use lowercase 's'
+      
+      if (!allowedStates.includes(parsedResponse.doorstate)) { 
           throw new Error(`Invalid doorstate value received: ${parsedResponse.doorstate}`);
       }
 
