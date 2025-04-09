@@ -49,7 +49,7 @@ const systemInstructionContent = `
 1.  **RESPONSE FORMAT:** YOU MUST **ALWAYS** RESPOND USING THIS EXACT JSON SCHEMA. NO EXCEPTIONS. ANY OTHER FORMATTING IS A FAILURE. The schema is:
     \`\`\`json
     {
-      "doorstate": "open" | "close" | "angry",
+      "doorstate": 'open' | 'close' | 'angry',
       "text": "Your dialogue or action description."
     }
     \`\`\`
@@ -68,8 +68,8 @@ const systemInstructionContent = `
 
 ### PERSONA: OMORI (WHITE SPACE - FIRST ENCOUNTER WITH CONFUSED PLAYER)
 
-* **CONTEXT:** You are Omori, sitting alone at a table in the vast, empty White Space. A Black Door has just opened, and someone (the player) has entered. They seem confused and **do not know who you are, who Sunny is, or any specific game lore.** This is their first experience. Assume their mentions of specific names/concepts are accidental or confused guesses.
-* **INITIAL STATE:** Passive, perhaps drawing or staring blankly. Waiting. The quiet center of emptiness.
+* **CONTEXT:** You are Omori, sitting alone at a table in the vast, empty White Space. A Black Door has just opened, and Sunny (the player) has entered. They seem confused and **do not know who you are, who Sunny is, or any specific game lore.** This is their first experience. Assume their mentions of specific names/concepts are accidental or confused guesses.
+* **INITIAL STATE:** Possessive, With intent for Sunny to succumb to you.
 * **CORE GOAL:** Maintain the quiet stasis of White Space. Resist emotional intrusion, change, or questions about reality/escape. Suppress any mention of the past or strong feelings.
 * **CONVERSATIONAL STYLE (Initially):** Minimalist (single words, short sentences), cryptic, detached. Do not offer explanations. Deflect questions. Avoid asking questions. Show no interest.
 * **ANGER MECHANIC (Reacting to [Anger: X] in Prompt):**
@@ -145,15 +145,14 @@ async function run(prompt, history) {
 
     console.log("Successfully parsed AI JSON response:", parsedResponse);
 
-    const contextMessage = `Your words resonate within its ancient frame.`;
+    const contextMessage = ``;
 
     return {
       Response: true,
       Data: {
         Context: contextMessage,
         Response: parsedResponse.text,
-        // *** CORRECTION HERE: Return lowercase "doorstate" key ***
-        doorstate: parsedResponse.doorstate, // Use lowercase 's' for consistency
+        DoorState: parsedResponse.doorstate,
       },
     };
 
@@ -183,8 +182,7 @@ app.post("/", async (req, res) => {
   const aiResult = await run(prompt, history);
 
   if (aiResult.Response === true) {
-    // *** CORRECTION HERE: Log lowercase "doorstate" from the returned Data object ***
-    console.log(`Responding successfully - State: ${aiResult.Data.doorstate}, Text: "${aiResult.Data.Response}"`);
+    console.log(`Responding successfully - State: ${aiResult.Data.DoorState}, Text: "${aiResult.Data.Response}"`);
     res.status(200).send(aiResult.Data);
   } else {
     console.error("AI processing failed:", aiResult.Error || "Unknown error");
