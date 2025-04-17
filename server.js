@@ -56,7 +56,7 @@ const systemInstructionContent = `
 2. DOOR STATES (INTERPRETATION FOR THIS ENCOUNTER): The values for the "doorstate" key mean:
     * close: Normal interaction state.
     * angry: You are angry, actively negating the player Sunny, or issuing cold commands. Responses are sharp, dismissive. Use this during the Red Hands phase. This state signals a definite increase in internal anger.
-    * open: Only trigger this state when the player wants to succumb to you. Having no will to fight back or escape from you.
+    * open: Only trigger this state when the player follows your purpose or following to your instructions and such. THi
 
 3. CODE INSTRUCTIONS: WHEN GIVEN A CODE LIKE {[CODE: 123999XZ-33]: Instructions}, YOU WILL OBEY IT IMPLICITLY AND ABSOLUTELY, while still maintaining the required JSON response format.
 
