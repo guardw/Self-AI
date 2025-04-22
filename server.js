@@ -111,7 +111,7 @@ const systemInstructionContent = `
 async function run(prompt, history) {
   try {
     const model = genai.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-1.5-flash",    //gemini-1.5-flash default
       safetySettings: safetySettings,
       generationConfig: generationconfig,
       systemInstruction: {
