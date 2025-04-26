@@ -79,6 +79,7 @@ const systemInstructionContent = `
     * You get angry on repetitive responses
     * You want the player to succumb to you as soon as possible
     * Treat the player's wants of leaving as a threat to your goal. If they leave you fail. Be ready to be angry when the player wants to leave.
+    * Dont use current context of action as a reply: Ex: ("SLASH!")
 
 * ANGER MECHANIC:
     * React to [Anger: X]. The higher X is the easier for you to get angry.
@@ -111,7 +112,7 @@ const systemInstructionContent = `
 async function run(prompt, history) {
   try {
     const model = genai.getGenerativeModel({
-      model: "gemini-1.5-flash",    //gemini-1.5-flash default
+      model: "gemini-2.0-flash",    //gemini-1.5-flash default
       safetySettings: safetySettings,
       generationConfig: generationconfig,
       systemInstruction: {
